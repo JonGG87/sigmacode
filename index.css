@@ -13,20 +13,41 @@
   --error: #ef4444;
 }
 
-* {
+/* --- CSS Reset & Browser Consistency --- */
+*, *::before, *::after {
   box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape on iOS */
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 
 body {
   margin: 0;
   padding: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; /* macOS font smoothing */
+  -moz-osx-font-smoothing: grayscale; /* Firefox font smoothing */
   overflow-x: hidden;
 }
 
-/* Layout */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* --- App Layout --- */
+
 .app-container {
   position: relative;
-  height: 100vh;
+  height: 100vh; /* Fallback for older browsers */
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   width: 100vw;
   overflow: hidden;
   background-color: var(--bg-page);
@@ -48,6 +69,9 @@ body {
   top: 0;
   box-shadow: 4px 0 15px rgba(0,0,0,0.1);
   overflow-y: auto; /* Allow scrolling within sidebar if menu is long */
+  -webkit-overflow-scrolling: touch; /* iOS Momentum Scrolling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
 }
 
 .sidebar.closed {
@@ -118,6 +142,7 @@ body {
   transition: margin-left 0.3s ease-in-out;
   width: auto;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* iOS Momentum Scrolling */
 }
 
 .main-content.sidebar-open {
@@ -137,6 +162,7 @@ body {
   align-items: center;
   background-color: rgba(255,255,255,0.8);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
   position: sticky;
   top: 0;
   z-index: 40;
@@ -171,6 +197,7 @@ h1 {
   font-size: 2.5rem;
   color: var(--primary);
   margin-bottom: 1rem;
+  margin-top: 0; /* Reset top margin */
 }
 
 h2 {
