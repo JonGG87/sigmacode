@@ -25,10 +25,11 @@ body {
 
 /* Layout */
 .app-container {
-  display: flex;
+  position: relative;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: var(--bg-page);
 }
 
 /* Sidebar */
@@ -110,12 +111,12 @@ body {
 
 /* Main Content */
 .main-content {
-  flex: 1;
+  height: 100%;
   background-color: var(--bg-page);
   overflow-y: auto;
   position: relative;
   transition: margin-left 0.3s ease-in-out;
-  width: 100%;
+  width: auto;
   scroll-behavior: smooth;
 }
 
@@ -209,7 +210,7 @@ li {
 /* Cards */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin: 20px 0;
 }
