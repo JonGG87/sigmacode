@@ -648,6 +648,15 @@ const SectionAnalysis = () => {
             <h1>Percepción y Educación en Ciberseguridad</h1>
             <p className="subtitle">Análisis estadístico de la encuesta realizada a estudiantes de la Universidad de Panamá.</p>
 
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <img 
+                    src="https://i.imgur.com/D3RbNYQ.png" 
+                    alt="Análisis de Encuesta" 
+                    className="responsive-img" 
+                    style={{ margin: '0 auto' }} 
+                />
+            </div>
+
             <h2 id="analisis-metodologia">1. Introducción y Metodología</h2>
             <div className="card">
                 <p>
@@ -745,12 +754,23 @@ const SectionCongreso = () => (
         <p className="subtitle">Participación y aprendizaje en eventos académicos.</p>
 
         <h2 id="congreso-carteles">Sesión de carteles y posters</h2>
+        
+        <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            <img src="https://i.imgur.com/cOERJaT.png" alt="Carteles" className="responsive-img" style={{ margin: '0 auto' }} />
+        </div>
+
         <div className="card">
             <div style={{display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap'}}>
                 <div style={{fontSize: '3rem'}}>📊</div>
                 <div>
                     <p>Esta sesión, estaba programada en el vestíbulo de la biblioteca Simón Bolívar y tenía una duración de ocho horas, estaba diseñada para ser un espacio de visibilidad continua para diversos trabajos estadísticos.</p>
                 </div>
+            </div>
+            
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px', marginTop: '20px' }}>
+                <img src="https://i.imgur.com/M4SHhgp.png" alt="Evidencia 1" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover', border: '1px solid #e2e8f0' }} />
+                <img src="https://i.imgur.com/a0oTlr5.png" alt="Evidencia 2" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover', border: '1px solid #e2e8f0' }} />
+                <img src="https://i.imgur.com/CKf1erW.png" alt="Evidencia 3" style={{ width: '100%', borderRadius: '8px', objectFit: 'cover', border: '1px solid #e2e8f0' }} />
             </div>
         </div>
 
