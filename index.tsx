@@ -345,6 +345,7 @@ const SectionHome = () => (
         src="https://i.ibb.co/68v9Lp6/Sin-t-tulo-2.png"
         alt="CodeSigma Banner" 
         className="responsive-img"
+        referrerPolicy="no-referrer"
         style={{ maxWidth: '100%', border: 'none', boxShadow: 'none', margin: '0 auto' }}
       />
     </div>
@@ -836,7 +837,10 @@ const App = () => {
     
     // If no specific ID, scroll to top
     if (!id) {
-        document.querySelector('.main-content')?.scrollTo(0, 0);
+        const mainContent = document.querySelector('.main-content') as HTMLElement | null;
+        if (mainContent) {
+            mainContent.scrollTop = 0;
+        }
     } else {
         // Wait for render if switching sections
         setTimeout(() => {
