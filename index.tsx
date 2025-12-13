@@ -428,7 +428,7 @@ const SectionModule1 = () => (
     </p>
     <div style={{textAlign: 'center', backgroundColor: 'white', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0'}}>
         <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" 
+            src="https://imgur.com/zpJxSm4.png" 
             alt="Proceso Estadístico" 
             className="responsive-img" 
             style={{margin: 0, border: 'none', boxShadow: 'none'}}
@@ -511,7 +511,7 @@ const SectionModule2 = () => (
     
     <div style={{textAlign: 'center', marginBottom: '2rem'}}>
         <img 
-            src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop" 
+            src="https://imgur.com/R5fOJTS.png" 
             alt="Línea de Tiempo de la Probabilidad" 
             className="responsive-img" 
             style={{margin: '0 auto', display: 'block'}}
