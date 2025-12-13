@@ -338,16 +338,47 @@ const SampleCalculator = () => {
   );
 };
 
+// --- Home Banner Component ---
+
+const bannerSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="250" rx="16" fill="url(#bg)"/>
+  <circle cx="100" cy="50" r="100" fill="#0ea5e9" opacity="0.05"/>
+  <circle cx="700" cy="200" r="100" fill="#10b981" opacity="0.05"/>
+  <g transform="translate(60, 45) scale(1.6)">
+    <path d="M25 15 Q10 15 10 30 V70 Q10 85 25 85" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" />
+    <path d="M75 15 Q90 15 90 30 V70 Q90 85 75 85" fill="none" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" />
+    <path d="M65 25 H35 L55 50 L35 75 H65" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <text x="240" y="140" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="80" fill="white" style="text-shadow: 0 4px 12px rgba(0,0,0,0.3);">CodeSigma</text>
+  <text x="245" y="180" font-family="system-ui, -apple-system, sans-serif" font-weight="500" font-size="24" fill="#94a3b8" letter-spacing="3" text-transform="uppercase">Estadística para Informáticos</text>
+</svg>`;
+
+const HomeBanner = () => (
+  <div style={{ marginBottom: '2rem' }}>
+    <img 
+      src={`data:image/svg+xml;utf8,${encodeURIComponent(bannerSvg)}`}
+      alt="CodeSigma Banner" 
+      style={{ 
+        width: '100%', 
+        height: 'auto', 
+        borderRadius: '16px', 
+        boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
+        border: '1px solid rgba(255,255,255,0.1)'
+      }} 
+    />
+  </div>
+);
+
 const SectionHome = () => (
   <div className="animate-fade-in">
-    <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-      <img 
-        src="/banner.svg" 
-        alt="CodeSigma Banner" 
-        className="responsive-img" 
-        style={{ maxWidth: '100%', border: 'none', boxShadow: 'none', margin: '0 auto' }}
-      />
-    </div>
+    <HomeBanner />
     <h1>Inicio</h1>
     <div className="card">
       <p>
@@ -664,6 +695,7 @@ const SectionAnalysis = () => {
             </div>
 
             <h2 id="analisis-demografia">3. Distribución por Carrera</h2>
+            <p>La distribución de la muestra refleja la diversidad académica dentro de la Facultad, con una mayoría de estudiantes provenientes de la carrera de Arquitectura.</p>
             <div className="card" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                 <div className="card-title">Participación Estudiantil</div>
                 <SimplePieChart data={pieData} />
@@ -835,10 +867,7 @@ const App = () => {
     
     // If no specific ID, scroll to top
     if (!id) {
-        const mainContent = document.querySelector('.main-content') as HTMLElement | null;
-        if (mainContent) {
-            mainContent.scrollTop = 0;
-        }
+        document.querySelector('.main-content')?.scrollTo(0, 0);
     } else {
         // Wait for render if switching sections
         setTimeout(() => {
