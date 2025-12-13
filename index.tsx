@@ -17,70 +17,6 @@ const SigmaIcon = () => (
   </svg>
 );
 
-// --- Banner Component (Replaces external image) ---
-const CodeSigmaBanner = () => (
-  <div style={{ width: '100%', maxWidth: '750px', margin: '0 auto', padding: '10px 0' }}>
-    <svg viewBox="0 0 650 140" style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
-      <defs>
-        <linearGradient id="sigmaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f59e0b" />
-          <stop offset="100%" stopColor="#d97706" />
-        </linearGradient>
-        <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#0ea5e9" />
-          <stop offset="100%" stopColor="#3b82f6" />
-        </linearGradient>
-         <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
-            <feOffset dx="2" dy="2" result="offsetblur"/>
-            <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3"/>
-            </feComponentTransfer>
-            <feMerge> 
-                <feMergeNode/>
-                <feMergeNode in="SourceGraphic"/> 
-            </feMerge>
-        </filter>
-      </defs>
-
-      {/* Logo Group */}
-      <g transform="translate(65, 70)">
-        {/* Background Hexagon */}
-        <path d="M0 -55 L48 -28 L48 28 L0 55 L-48 28 L-48 -28 Z" fill="#1e293b" stroke="#334155" strokeWidth="2" />
-        
-        {/* Tech Brackets */}
-        <path d="M-40 -25 L-55 -25 L-60 -15 L-60 15 L-55 25 L-40 25" fill="none" stroke="#10b981" strokeWidth="3" strokeLinecap="round" />
-        <path d="M40 -25 L55 -25 L60 -15 L60 15 L55 25 L40 25" fill="none" stroke="#10b981" strokeWidth="3" strokeLinecap="round" />
-
-        {/* Sigma */}
-        <text x="0" y="28" fontSize="80" fontWeight="bold" fill="url(#sigmaGradient)" textAnchor="middle" fontFamily="Arial, sans-serif" filter="url(#dropShadow)">Σ</text>
-        
-        {/* Binary Bits */}
-        <text x="-35" y="-35" fontSize="8" fill="#10b981" opacity="0.6">101</text>
-        <text x="35" y="45" fontSize="8" fill="#10b981" opacity="0.6">010</text>
-      </g>
-
-      {/* Text Group */}
-      <g transform="translate(150, 10)">
-        {/* Main Title Background/Shadow */}
-        <text x="3" y="83" fontFamily="sans-serif" fontWeight="900" fontSize="76" fill="rgba(0,0,0,0.1)">CodeSigma</text>
-        
-        {/* Main Title */}
-        <text x="0" y="80" fontFamily="sans-serif" fontWeight="900" fontSize="76" fill="#0f172a">
-            Code<tspan fill="url(#blueGradient)">Sigma</tspan>
-        </text>
-
-        {/* Subtitle */}
-        <text x="5" y="118" fontFamily="monospace" fontWeight="600" fontSize="26" fill="#64748b" letterSpacing="-0.5" stroke="#0f172a" strokeWidth="0.5">Estadística para Informáticos</text>
-        <text x="5" y="118" fontFamily="monospace" fontWeight="600" fontSize="26" fill="white" letterSpacing="-0.5">Estadística para Informáticos</text>
-        
-        {/* Decorative underscore */}
-        <rect x="420" y="105" width="40" height="8" rx="2" fill="#10b981" />
-      </g>
-    </svg>
-  </div>
-);
-
 // --- Chart Components ---
 
 // Simple SVG Pie Chart
@@ -405,7 +341,12 @@ const SampleCalculator = () => {
 const SectionHome = () => (
   <div className="animate-fade-in">
     <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-      <CodeSigmaBanner />
+      <img 
+        src="/banner.svg" 
+        alt="CodeSigma Banner" 
+        className="responsive-img" 
+        style={{ maxWidth: '100%', border: 'none', boxShadow: 'none', margin: '0 auto' }}
+      />
     </div>
     <h1>Inicio</h1>
     <div className="card">
@@ -723,7 +664,6 @@ const SectionAnalysis = () => {
             </div>
 
             <h2 id="analisis-demografia">3. Distribución por Carrera</h2>
-            <p>La distribución de la muestra refleja la diversidad académica dentro de la Facultad, con una mayoría de estudiantes provenientes de la carrera de Arquitectura.</p>
             <div className="card" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                 <div className="card-title">Participación Estudiantil</div>
                 <SimplePieChart data={pieData} />
