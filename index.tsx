@@ -48,7 +48,7 @@ const SimplePieChart = ({ data }: { data: { label: string, value: number, color:
               key={i}
               d={`M 0 0 L ${startX} ${startY} A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY} L 0 0`}
               fill={slice.color}
-              stroke="white"
+              stroke="var(--bg-card)"
               strokeWidth="0.02"
             />
           );
@@ -56,10 +56,10 @@ const SimplePieChart = ({ data }: { data: { label: string, value: number, color:
       </svg>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '15px' }}>
         {data.map((item, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', backgroundColor: '#f8fafc', padding: '5px 10px', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', backgroundColor: 'var(--bg-page)', padding: '5px 10px', borderRadius: '20px', border: '1px solid var(--border)', color: 'var(--text-main)' }}>
             <span style={{ width: '12px', height: '12px', backgroundColor: item.color, borderRadius: '50%' }}></span>
             <span style={{fontWeight: 600}}>{item.label}</span>
-            <span style={{color: '#64748b'}}>({Math.round((item.value/total)*100)}%)</span>
+            <span style={{color: 'var(--text-light)'}}>({Math.round((item.value/total)*100)}%)</span>
           </div>
         ))}
       </div>
@@ -87,17 +87,17 @@ const SimpleLineChart = ({ data, xLabel, yLabel }: { data: { x: string, y: numbe
         {[0, 0.25, 0.5, 0.75, 1].map((tick, i) => {
            const y = height - padding - (tick * (height - padding * 2));
            return (
-             <line key={i} x1={padding} y1={y} x2={width - padding} y2={y} stroke="#e2e8f0" strokeWidth="1" strokeDasharray="5,5" />
+             <line key={i} x1={padding} y1={y} x2={width - padding} y2={y} stroke="var(--chart-grid)" strokeWidth="1" strokeDasharray="5,5" />
            )
         })}
 
         {/* Axes */}
-        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#64748b" strokeWidth="2" />
-        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="#64748b" strokeWidth="2" />
+        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="var(--text-light)" strokeWidth="2" />
+        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="var(--text-light)" strokeWidth="2" />
         
         {/* Labels */}
-        <text x={width/2} y={height - 10} textAnchor="middle" fontSize="14" fontWeight="600" fill="#334155">{xLabel}</text>
-        <text x="15" y={height/2} textAnchor="middle" transform={`rotate(-90, 15, ${height/2})`} fontSize="14" fontWeight="600" fill="#334155">{yLabel}</text>
+        <text x={width/2} y={height - 10} textAnchor="middle" fontSize="14" fontWeight="600" fill="var(--text-main)">{xLabel}</text>
+        <text x="15" y={height/2} textAnchor="middle" transform={`rotate(-90, 15, ${height/2})`} fontSize="14" fontWeight="600" fill="var(--text-main)">{yLabel}</text>
 
         {/* Line */}
         <polyline points={points} fill="none" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
@@ -108,9 +108,9 @@ const SimpleLineChart = ({ data, xLabel, yLabel }: { data: { x: string, y: numbe
           const y = height - padding - ((d.y / maxY) * (height - padding * 2));
           return (
             <g key={i} className="chart-point">
-              <circle cx={x} cy={y} r="6" fill="white" stroke="#0ea5e9" strokeWidth="3" />
-              <text x={x} y={y - 15} textAnchor="middle" fontSize="12" fontWeight="bold" fill="#0f172a">{d.y}</text>
-              <text x={x} y={height - padding + 20} textAnchor="middle" fontSize="12" fill="#64748b">{d.x}</text>
+              <circle cx={x} cy={y} r="6" fill="var(--bg-card)" stroke="#0ea5e9" strokeWidth="3" />
+              <text x={x} y={y - 15} textAnchor="middle" fontSize="12" fontWeight="bold" fill="var(--text-main)">{d.y}</text>
+              <text x={x} y={height - padding + 20} textAnchor="middle" fontSize="12" fill="var(--text-light)">{d.x}</text>
             </g>
           );
         })}
@@ -132,17 +132,17 @@ const SimpleScatterChart = ({ data, xLabel, yLabel }: { data: { x: number, y: nu
      <div style={{ width: '100%', overflowX: 'auto', padding: '10px' }}>
       <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', minWidth: '500px' }}>
          {/* Grid background */}
-         <rect x={padding} y={padding} width={width - padding*2} height={height - padding*2} fill="#f8fafc" />
+         <rect x={padding} y={padding} width={width - padding*2} height={height - padding*2} fill="var(--bg-page)" />
 
         {/* Axes */}
-        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#64748b" strokeWidth="2" />
-        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="#64748b" strokeWidth="2" />
+        <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="var(--text-light)" strokeWidth="2" />
+        <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="var(--text-light)" strokeWidth="2" />
         
          {/* Labels */}
-        <text x={width/2} y={height - 15} textAnchor="middle" fontSize="14" fontWeight="600" fill="#334155">{xLabel}</text>
+        <text x={width/2} y={height - 15} textAnchor="middle" fontSize="14" fontWeight="600" fill="var(--text-main)">{xLabel}</text>
         <text x={width/2} y={height - 2} textAnchor="middle" fontSize="11" fill="#ef4444" fontStyle="italic">(Variable Independiente)</text>
         
-        <text x="20" y={height/2} textAnchor="middle" transform={`rotate(-90, 20, ${height/2})`} fontSize="14" fontWeight="600" fill="#334155">{yLabel}</text>
+        <text x="20" y={height/2} textAnchor="middle" transform={`rotate(-90, 20, ${height/2})`} fontSize="14" fontWeight="600" fill="var(--text-main)">{yLabel}</text>
         <text x="35" y={height/2} textAnchor="middle" transform={`rotate(-90, 35, ${height/2})`} fontSize="11" fill="#ef4444" fontStyle="italic">(Variable Dependiente)</text>
 
         {/* Dots */}
@@ -173,10 +173,10 @@ const SimpleBarChart = ({ data, title }: { data: { label: string, value: number,
     return (
         <div style={{ width: '100%', overflowX: 'auto', padding: '10px' }}>
             <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', minWidth: '500px' }}>
-                {title && <text x={width/2} y={30} textAnchor="middle" fontSize="16" fontWeight="bold" fill="#334155">{title}</text>}
+                {title && <text x={width/2} y={30} textAnchor="middle" fontSize="16" fontWeight="bold" fill="var(--text-main)">{title}</text>}
                 
                 {/* Axes */}
-                <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#cbd5e1" strokeWidth="2" />
+                <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="var(--border)" strokeWidth="2" />
 
                 {/* Bars */}
                 {data.map((d, i) => {
@@ -194,9 +194,9 @@ const SimpleBarChart = ({ data, title }: { data: { label: string, value: number,
                                 fill={d.color} 
                                 rx="4"
                             />
-                            <text x={x + barWidth/2} y={y - 5} textAnchor="middle" fontSize="12" fontWeight="bold" fill="#334155">{d.value}%</text>
+                            <text x={x + barWidth/2} y={y - 5} textAnchor="middle" fontSize="12" fontWeight="bold" fill="var(--text-main)">{d.value}%</text>
                             {/* Split label if too long */}
-                            <text x={x + barWidth/2} y={height - padding + 15} textAnchor="middle" fontSize="11" fill="#64748b" style={{fontSize: '10px'}}>
+                            <text x={x + barWidth/2} y={height - padding + 15} textAnchor="middle" fontSize="11" fill="var(--text-light)" style={{fontSize: '10px'}}>
                                 {d.label.split(' ').map((line, idx) => (
                                     <tspan x={x + barWidth/2} dy={idx === 0 ? 0 : 12} key={idx}>{line}</tspan>
                                 ))}
@@ -249,7 +249,7 @@ const EventCard = ({ title, emoji, color, examples }: { title: string, emoji: st
         <div style={{minHeight: '60px', display: 'flex', alignItems: 'center'}}>
            <p style={{margin: 0, fontStyle: 'italic', fontWeight: 500}}>"{examples[index]}"</p>
         </div>
-        <small style={{display:'block', marginTop: '15px', color: '#94a3b8', fontSize: '0.75rem'}}>👆 Haz click para ver otro ejemplo</small>
+        <small style={{display:'block', marginTop: '15px', color: 'var(--text-light)', fontSize: '0.75rem'}}>👆 Haz click para ver otro ejemplo</small>
     </div>
   );
 };
@@ -288,13 +288,13 @@ const SampleCalculator = () => {
   return (
     <div className="calculator">
       <h3 style={{marginTop: 0}}>Calculadora de Tamaño de la Muestra</h3>
-      <p style={{fontSize: '0.9rem', color: '#64748b'}}>
+      <p style={{fontSize: '0.9rem', color: 'var(--text-light)'}}>
         Introduce el tamaño de la población para usar la fórmula finita. Si se deja vacío, se asume población infinita.
       </p>
       
       <div className="card-grid" style={{gridTemplateColumns: '1fr 1fr'}}>
         <div className="input-group">
-          <label>Tamaño de Población (N) <small style={{fontWeight:'normal', color:'#94a3b8'}}>(Opcional)</small></label>
+          <label>Tamaño de Población (N) <small style={{fontWeight:'normal', color:'var(--text-light)'}}>(Opcional)</small></label>
           <input 
             type="number" 
             min="1" 
@@ -306,7 +306,7 @@ const SampleCalculator = () => {
 
         <div className="input-group">
           <label>Valor Z (Confianza)</label>
-          <select value={z} onChange={(ev) => setZ(parseFloat(ev.target.value))} style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #e2e8f0'}}>
+          <select value={z} onChange={(ev) => setZ(parseFloat(ev.target.value))} style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)'}}>
             <option value="1.645">90% (1.645)</option>
             <option value="1.96">95% (1.96)</option>
             <option value="2.576">99% (2.576)</option>
@@ -365,6 +365,36 @@ const SectionHome = () => (
       </p>
       <p>
         Aquí encontrarás temas fundamentales del curso, ejemplos prácticos, análisis con datos reales y recursos visuales que hacen más clara la comprensión de los contenidos.
+      </p>
+    </div>
+
+    {/* Profile Section */}
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      marginTop: '60px',
+      marginBottom: '40px' 
+    }}>
+      <img 
+        src="https://i.imgur.com/cZOPknC.png" 
+        alt="Jonathan Gonzalez" 
+        style={{
+          width: '250px',
+          height: '250px',
+          borderRadius: '50%',
+          objectFit: 'cover',
+          boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
+          border: '6px solid var(--bg-card)'
+        }}
+      />
+      <p style={{
+        marginTop: '20px',
+        fontSize: '1.5rem',
+        fontWeight: '700',
+        color: 'var(--text-main)'
+      }}>
+        Jonathan Gonzalez
       </p>
     </div>
   </div>
@@ -426,14 +456,14 @@ const SectionModule1 = () => (
     <p>
       El método estadístico se basa en el <strong>Método Científico</strong>. Cuando no existen registros, es necesaria la realización de encuestas, ya sea tomando toda la población (censo) o una parte de ella (muestra) para deducir el comportamiento de las características de la totalidad de la población.
     </p>
-    <div style={{textAlign: 'center', backgroundColor: 'white', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0'}}>
+    <div style={{textAlign: 'center', backgroundColor: 'var(--bg-card)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border)'}}>
         <img 
             src="https://imgur.com/zpJxSm4.png" 
             alt="Proceso Estadístico" 
             className="responsive-img" 
             style={{margin: 0, border: 'none', boxShadow: 'none'}}
         />
-        <p style={{fontSize: '0.8rem', color: '#64748b', marginTop: '10px'}}>Recolección &rarr; Organización &rarr; Presentación &rarr; Análisis &rarr; Interpretación</p>
+        <p style={{fontSize: '0.8rem', color: 'var(--text-light)', marginTop: '10px'}}>Recolección &rarr; Organización &rarr; Presentación &rarr; Análisis &rarr; Interpretación</p>
     </div>
 
     <h2 id="mod1-actividad">Actividad en Clase</h2>
@@ -461,7 +491,7 @@ const SectionModule1 = () => (
     <h2 id="mod1-muestreo">Clasificación de Muestreo</h2>
     <div className="card-grid">
       <div className="card">
-        <div className="card-title" style={{color: '#f59e0b'}}>No Probabilístico (Subjetivo)</div>
+        <div className="card-title" style={{color: 'var(--warning)'}}>No Probabilístico (Subjetivo)</div>
         <p>La selección depende del criterio del investigador.</p>
         <ul>
           <li><strong>Cuota:</strong> Se seleccionan individuos hasta cubrir cupos específicos por características (ej. 50 hombres y 50 mujeres).</li>
@@ -471,7 +501,7 @@ const SectionModule1 = () => (
         </ul>
       </div>
       <div className="card">
-        <div className="card-title" style={{color: '#10b981'}}>Probabilístico (Aleatorio)</div>
+        <div className="card-title" style={{color: 'var(--success)'}}>Probabilístico (Aleatorio)</div>
         <p>Todos tienen la misma probabilidad de ser elegidos (azar).</p>
         <ul>
           <li><strong>Aleatorio simple:</strong> Como una rifa, cada individuo tiene igual probabilidad de selección.</li>
@@ -520,42 +550,42 @@ const SectionModule2 = () => (
 
     <div className="timeline">
         <div className="timeline-item">
-            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: '#0f172a', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
+            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--primary)', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
                <span style={{fontSize: '1.5rem', marginRight: '10px'}}>🏛️</span> Bases: Civilizaciones Antiguas - Siglo XVI
             </div>
             <p style={{margin: 0}}>Primeros juegos de azar (Sumerios, Egipcios), el Triángulo Aritmético Chino (coeficientes binomiales, 1303), y Liber de ludo aleae de Girolamo Cardano (primer tratado sistemático, 1560).</p>
         </div>
 
         <div className="timeline-item">
-            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: '#0f172a', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
+            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--primary)', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
                <span style={{fontSize: '1.5rem', marginRight: '10px'}}>✍️</span> Fundación Formal: Siglo XVII (1601-1700)
             </div>
             <p style={{margin: 0}}>Se inicia con el problema de la división de las apuestas de Chevalier de Méré, motivando el trabajo de Blaise Pascal y Pierre de Fermat. Christiaan Huygens publica el primer libro formal (Razonamiento sobre los juegos de azar, 1657).</p>
         </div>
 
         <div className="timeline-item">
-            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: '#0f172a', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
+            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--primary)', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
                <span style={{fontSize: '1.5rem', marginRight: '10px'}}>⚖️</span> Consolidación: Siglo XVIII (1701-1800)
             </div>
             <p style={{margin: 0}}>Jacob Bernoulli demuestra la Ley de los Grandes Números (Arte de la Conjetura, 1713). Thomas Bayes demuestra el Teorema de Bayes (1761). Pierre-Simon Laplace publica Théorie analytique des probabilités (1812).</p>
         </div>
 
         <div className="timeline-item">
-            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: '#0f172a', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
+            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--primary)', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
                <span style={{fontSize: '1.5rem', marginRight: '10px'}}>📈</span> Expansión: Siglo XIX (1801-1900)
             </div>
             <p style={{margin: 0}}>Desarrollo de distribuciones clave por Carl F. Gauss (Normal) y Simeon D. Poisson (Poisson). Andrey Markov desarrolla las Cadenas de Markov. Florence Nightingale aplica principios probabilísticos a la toma de decisiones.</p>
         </div>
 
         <div className="timeline-item">
-            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: '#0f172a', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
+            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--primary)', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
                <span style={{fontSize: '1.5rem', marginRight: '10px'}}>🏗️</span> Formalización Moderna: Siglo XX (1901-2000)
             </div>
             <p style={{margin: 0}}>Andrei Kolmogorov establece los Axiomas de la Probabilidad (1933). Ronald A. Fisher formaliza las pruebas de hipótesis y desarrolla el método de máxima verosimilitud. Jerzy Neyman y Egon Pearson formalizan la teoría de pruebas de hipótesis.</p>
         </div>
 
         <div className="timeline-item">
-            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: '#0f172a', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
+            <div style={{fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--primary)', marginBottom: '8px', display: 'flex', alignItems: 'center'}}>
                <span style={{fontSize: '1.5rem', marginRight: '10px'}}>🤖</span> Aplicaciones Contemporáneas: Siglo XX y XXI
             </div>
             <p style={{margin: 0}}>Claude Shannon desarrolla el concepto de entropía. Se destaca el uso de la probabilidad como base para el Machine Learning, Deep Learning, Inteligencia Artificial y el análisis de Big Data.</p>
@@ -687,7 +717,7 @@ const SectionAnalysis = () => {
             <div className="card" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                 <div className="card-title">Participación Estudiantil</div>
                 <SimplePieChart data={pieData} />
-                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: '#64748b', textAlign: 'center' }}>
+                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: 'var(--text-light)', textAlign: 'center' }}>
                     <em>Gráfico 1: Representación porcentual según carrera. La carrera de Arquitectura representa el bloque mayoritario, seguido de Diseño Gráfico.</em>
                 </p>
             </div>
@@ -721,7 +751,7 @@ const SectionAnalysis = () => {
             
             <div className="card">
                 <SimpleLineChart data={lineData} xLabel="Año Académico" yLabel="Puntaje Promedio (1-10)" />
-                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: '#64748b', textAlign: 'center' }}>
+                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: 'var(--text-light)', textAlign: 'center' }}>
                     <em>Gráfico 3: Tendencia del conocimiento en ciberseguridad. Se observa un crecimiento sostenido, sugiriendo que la madurez académica y profesional contribuye indirectamente a una mejor higiene digital.</em>
                 </p>
             </div>
@@ -731,7 +761,7 @@ const SectionAnalysis = () => {
             
             <div className="card">
                 <SimpleScatterChart data={scatterData} xLabel="Edad del Estudiante (Años)" yLabel="Puntaje de Detección (0-100)" />
-                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: '#64748b', textAlign: 'center' }}>
+                <p style={{ marginTop: '20px', fontSize: '0.9rem', color: 'var(--text-light)', textAlign: 'center' }}>
                     <em>Gráfico 4: Dispersión Edad vs. Puntaje. La tendencia ascendente indica una correlación positiva: a mayor edad, mayor es la probabilidad de identificar correctamente intentos de estafa o sitios maliciosos. Esto podría deberse a una mayor experiencia acumulada en el uso de internet.</em>
                 </p>
             </div>
@@ -844,6 +874,7 @@ const PlaceholderPage = ({ title, text }: { title: string, text: string }) => (
 const App = () => {
   const [activeSection, setActiveSection] = useState('inicio');
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Responsive sidebar handling
   useEffect(() => {
@@ -857,6 +888,15 @@ const App = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Dark Mode Handling
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   const handleNavClick = (section: string, id?: string) => {
     setActiveSection(section);
@@ -982,10 +1022,29 @@ const App = () => {
       {/* Main Content */}
       <main className={`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="top-bar">
-          <button className="toggle-btn" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle Menu">
-            <MenuIcon />
-          </button>
-          <span style={{marginLeft: '15px', fontWeight: 600, color: 'var(--primary)'}}>CodeSigma: Estadística para Informáticos</span>
+          <div className="top-bar-left">
+            <button className="toggle-btn" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle Menu">
+              <MenuIcon />
+            </button>
+            <span style={{fontWeight: 600, color: 'var(--primary)', fontSize: '1.1rem'}}>CodeSigma</span>
+            
+            {/* Quick Navigation Icons */}
+            <div className="quick-nav">
+                <button className="quick-nav-btn" onClick={() => handleNavClick('inicio')} title="Inicio">🏠</button>
+                <button className="quick-nav-btn" onClick={() => handleNavClick('modulo1')} title="Estadística">📊</button>
+                <button className="quick-nav-btn" onClick={() => handleNavClick('modulo2')} title="Probabilidad">🎲</button>
+                <button className="quick-nav-btn" onClick={() => handleNavClick('analisis')} title="Análisis">📋</button>
+                <button className="quick-nav-btn" onClick={() => handleNavClick('congreso')} title="Congreso">🏛️</button>
+                <button className="quick-nav-btn" onClick={() => handleNavClick('conclusiones')} title="Conclusiones">📝</button>
+            </div>
+          </div>
+
+          <div className="top-bar-right">
+             {/* Dark Mode Toggle */}
+            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)} title={darkMode ? "Cambiar a Modo Claro" : "Cambiar a Modo Oscuro"}>
+                {darkMode ? '☀️' : '🌙'}
+            </button>
+          </div>
         </div>
         
         <div className="content-wrapper">
