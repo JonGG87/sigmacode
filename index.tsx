@@ -340,12 +340,13 @@ const SampleCalculator = () => {
 
 // --- Home Banner Component ---
 const HomeBanner = () => (
-  <div style={{ marginBottom: '2rem' }}>
+  <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
     <img 
       src="https://i.imgur.com/wJj73vN.png"
       alt="CodeSigma Banner" 
       style={{ 
         width: '100%', 
+        maxWidth: '500px',
         height: 'auto', 
         borderRadius: '16px', 
         boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
@@ -1027,16 +1028,16 @@ const App = () => {
               <MenuIcon />
             </button>
             <span style={{fontWeight: 600, color: 'var(--primary)', fontSize: '1.1rem'}}>CodeSigma</span>
-            
-            {/* Quick Navigation Icons */}
-            <div className="quick-nav">
-                <button className="quick-nav-btn" onClick={() => handleNavClick('inicio')} title="Inicio">🏠</button>
-                <button className="quick-nav-btn" onClick={() => handleNavClick('modulo1')} title="Estadística">📊</button>
-                <button className="quick-nav-btn" onClick={() => handleNavClick('modulo2')} title="Probabilidad">🎲</button>
-                <button className="quick-nav-btn" onClick={() => handleNavClick('analisis')} title="Análisis">📋</button>
-                <button className="quick-nav-btn" onClick={() => handleNavClick('congreso')} title="Congreso">🏛️</button>
-                <button className="quick-nav-btn" onClick={() => handleNavClick('conclusiones')} title="Conclusiones">📝</button>
-            </div>
+          </div>
+
+          {/* Quick Navigation Icons - Centered by Grid */}
+          <div className="quick-nav">
+              <button className="quick-nav-btn" onClick={() => handleNavClick('inicio')} title="Inicio">🏠</button>
+              <button className="quick-nav-btn" onClick={() => handleNavClick('modulo1')} title="Estadística">📊</button>
+              <button className="quick-nav-btn" onClick={() => handleNavClick('modulo2')} title="Probabilidad">🎲</button>
+              <button className="quick-nav-btn" onClick={() => handleNavClick('analisis')} title="Análisis">📋</button>
+              <button className="quick-nav-btn" onClick={() => handleNavClick('congreso')} title="Congreso">🏛️</button>
+              <button className="quick-nav-btn" onClick={() => handleNavClick('conclusiones')} title="Conclusiones">📝</button>
           </div>
 
           <div className="top-bar-right">
