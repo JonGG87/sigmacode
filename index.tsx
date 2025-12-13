@@ -342,7 +342,7 @@ const SampleCalculator = () => {
 const HomeBanner = () => (
   <div style={{ marginBottom: '2rem' }}>
     <img 
-      src="https://i.imgur.com/J5e50aX.png"
+      src="https://i.imgur.com/wJj73vN.png"
       alt="CodeSigma Banner" 
       style={{ 
         width: '100%', 
